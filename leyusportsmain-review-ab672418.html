@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>乐鱼体育 · 叙事篇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f5f9fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #1d2b36;
+            padding: 0 1rem 3rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page {
+            max-width: 800px;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        /* 开场氛围 */
+        .opening {
+            background: linear-gradient(145deg, #d4ebe8 0%, #b6d9d9 100%);
+            padding: 2.5rem 2rem 2.2rem;
+            border-radius: 40px 40px 32px 32px;
+            box-shadow: 0 12px 24px rgba(0, 60, 60, 0.08);
+            margin-bottom: 2.4rem;
+            text-align: center;
+        }
+        .opening small {
+            display: inline-block;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            color: #2b5b5b;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 0.75rem;
+        }
+        .opening h1 {
+            font-size: 2.4rem;
+            font-weight: 400;
+            color: #0a2f2f;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        .opening h1 strong {
+            font-weight: 600;
+            color: #023b3b;
+        }
+        .opening .tagline {
+            font-size: 1.1rem;
+            margin-top: 0.8rem;
+            color: #1a4b4b;
+            border-top: 1px solid rgba(0, 60, 60, 0.15);
+            padding-top: 0.8rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* 承接段落 */
+        .bridge {
+            background: white;
+            padding: 2rem 1.8rem;
+            border-radius: 28px;
+            box-shadow: 0 4px 12px rgba(0, 70, 70, 0.03);
+            margin-bottom: 2rem;
+        }
+        .bridge p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        .bridge p:last-child {
+            margin-bottom: 0;
+        }
+        .highlight {
+            background: #e2f0ee;
+            padding: 0.1rem 0.3rem;
+            border-radius: 6px;
+            color: #004d4d;
+            font-weight: 450;
+        }
+        .inline-link {
+            color: #0f6b6b;
+            text-decoration: none;
+            border-bottom: 2px solid #a0cdc8;
+            transition: border-color 0.2s, background 0.2s;
+            font-weight: 500;
+        }
+        .inline-link:hover {
+            border-bottom-color: #0f6b6b;
+            background: #d4ece6;
+        }
+        /* 特点卡片网格 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 2.4rem;
+        }
+        .feature-card {
+            background: white;
+            padding: 1.5rem 1.2rem 1.3rem;
+            border-radius: 24px;
+            box-shadow: 0 6px 14px rgba(0, 40, 40, 0.03);
+            border: 1px solid #dcefec;
+            transition: all 0.2s ease;
+        }
+        .feature-card:hover {
+            border-color: #8fcbc2;
+            box-shadow: 0 12px 20px rgba(0, 80, 80, 0.06);
+            transform: translateY(-2px);
+        }
+        .feature-card .icon {
+            font-size: 1.7rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1a4e4e;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.01em;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #2d4349;
+        }
+        /* 温和结尾 */
+        .closing {
+            background: #eaf5f1;
+            border-radius: 32px;
+            padding: 2rem 2rem 2.2rem;
+            margin-top: 0.6rem;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid #6bafa5;
+        }
+        .closing h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #194545;
+            margin-bottom: 0.8rem;
+        }
+        .closing p {
+            font-size: 1rem;
+            color: #1c3f3f;
+            max-width: 600px;
+        }
+        .closing .meta-note {
+            font-size: 0.85rem;
+            color: #3b6a6a;
+            margin-top: 1rem;
+            opacity: 0.75;
+        }
+        /* 简约 FAQ 摘要 */
+        .faq-mini {
+            background: white;
+            border-radius: 28px;
+            padding: 1.6rem 1.8rem;
+            margin: 1rem 0 2rem;
+            box-shadow: 0 4px 10px rgba(0, 50, 50, 0.02);
+        }
+        .faq-mini details {
+            margin-bottom: 0.7rem;
+            border-bottom: 1px solid #dcebe7;
+            padding-bottom: 0.6rem;
+        }
+        .faq-mini details:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .faq-mini summary {
+            font-weight: 500;
+            color: #0d4444;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            font-size: 1rem;
+        }
+        .faq-mini summary::marker {
+            color: #4d9c92;
+        }
+        .faq-mini p {
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: #1d3d44;
+            padding-left: 0.3rem;
+        }
+        /* 底部 */
+        .footnote {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #637e7e;
+            border-top: 1px solid #d4e3e0;
+            padding-top: 1.5rem;
+            margin-top: 0.8rem;
+        }
+        /* 响应式 */
+        @media (max-width: 560px) {
+            .opening h1 { font-size: 1.9rem; }
+            .feature-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .bridge, .closing { padding: 1.5rem 1.2rem; }
+            .opening { padding: 2rem 1.2rem; }
+        }
+        @media (min-width: 561px) and (max-width: 720px) {
+            .feature-grid { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- 开场短句 -->
+        <div class="opening">
+            <small>⏳ 叙事 · 运动漫游</small>
+            <h1>从一块场地<br>到一座<span>乐鱼体育</span></h1>
+            <div class="tagline">在跳动中理解结构，在对抗中发现秩序</div>
+        </div>
+
+        <!-- 承接段落：知识型 自然过渡 -->
+        <div class="bridge">
+            <p>运动并非只有输赢，它更是一套关于空间、时间和协作的语法。当我们谈论体育平台时，真正在讨论的其实是——<span class="highlight">如何让信息与体验同频</span>。从赛事数据到社区节奏，从视频流到实时互动，每一步都在还原竞技本身的肌理。</p>
+            <p>这种还原，需要细腻的设计和可靠的连接。<a href="https://leyusportsmain.com.cn" class="inline-link">乐鱼体育</a>正是基于这种理解搭建的聚合之处——它不扮演裁判，而是做一盏足够明亮的灯，让参与者看清赛场上的每一条纹路。</p>
+        </div>
+
+        <!-- 特点列表：网格卡片 -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="icon">📊</span>
+                <h3>数据叙事</h3>
+                <p>实时比分、历史统计、趋势曲线——用数字编织比赛的另一条故事线，不喧哗，但清晰。</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">🔄</span>
+                <h3>多端同步</h3>
+                <p>从手机到桌面，进度与关注点无缝跟随，让观赛节奏由你定义，而非设备。</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">🧩</span>
+                <h3>模块化信息</h3>
+                <p>赛程、阵容、深度解析—以卡片形式呈现，你可自由组合关注维度，不必淹没在资讯里。</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">🌱</span>
+                <h3>社区沉淀</h3>
+                <p>讨论、复盘、长文分析——每一条内容都像一次训练，慢慢累积成更深的认知。</p>
+            </div>
+        </div>
+
+        <!-- 场景提示 + 温和过渡 -->
+        <div class="closing">
+            <h2>让节奏回归场内</h2>
+            <p>无论你是数据分析型的爱好者，还是更享受纯粹观赛氛围的人，一个清晰的信息场总能帮助注意力聚焦。体育的魅力从来不只在胜负落定那一刻，也在于解读过程时的每一处细节。</p>
+            <p>在<a href="https://leyusportsmain.com.cn" class="inline-link">乐鱼体育</a>，我们更希望提供一个安静而可靠的角落，让你按自己的方式理解运动。不必追赶，不必焦虑，比赛本身已经足够精彩。</p>
+            <div class="meta-note">—— 知识型探索 · 叙事版</div>
+        </div>
+
+        <!-- FAQ 摘要 (轻量) -->
+        <div class="faq-mini">
+            <details>
+                <summary>为什么强调“信息结构”？</summary>
+                <p>好的结构让人更快找到焦点。就像球场上的站位一样，清晰的分类和层级能减少认知负担，让你专注于比赛本身。</p>
+            </details>
+            <details>
+                <summary>这里适合什么样的访问者？</summary>
+                <p>对体育有好奇心、希望从不同角度理解赛事的人，无论资深还是入门，都能找到自己的阅读节奏。</p>
+            </details>
+            <details>
+                <summary>内容更新频率如何？</summary>
+                <p>以赛事周期为节拍，重要节点会提供整合分析，平时保持基础数据更新，不制造信息噪音。</p>
+            </details>
+        </div>
+
+        <!-- 底部极简信息 -->
+        <div class="footnote">
+            <span>持续观察 · 冷静叙述</span>
+        </div>
+    </div>
+</body>
+</html>
