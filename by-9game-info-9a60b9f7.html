@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九游 · 知识库入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fafbfc;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", sans-serif;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 2rem 1.25rem;
+        }
+
+        .page-wrapper {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* 标题层级 */
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+            color: #0f172a;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 2.8rem 0 0.8rem 0;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid #e2e8f0;
+            color: #1e293b;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 1.6rem 0 0.4rem 0;
+            color: #334155;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            border-bottom: 1.5px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        a:hover {
+            border-bottom-color: #2563eb;
+            color: #1d4ed8;
+        }
+
+        /* hero 区（简洁介绍） */
+        .hero {
+            margin-bottom: 3rem;
+            padding: 0.5rem 0 1.5rem 0;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #475569;
+            max-width: 600px;
+        }
+
+        .meta-tag {
+            display: inline-block;
+            background: #eef2ff;
+            color: #3730a3;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.15rem 0.8rem;
+            border-radius: 20px;
+            margin-top: 0.6rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* 卡片 —— 知识库目录式 */
+        .directory-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1.8rem 0 2.2rem 0;
+        }
+
+        .dir-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #e9edf2;
+            transition: background 0.12s;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .dir-item:hover {
+            background: #f8faff;
+            border-color: #cbd5e1;
+        }
+
+        .dir-index {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #64748b;
+            min-width: 1.6rem;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .dir-label {
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        .dir-desc {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        /* 提示区块 */
+        .info-box {
+            background: #ffffff;
+            border-left: 4px solid #2563eb;
+            border-radius: 8px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.8rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .info-box p {
+            margin-bottom: 0.4rem;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-box .label {
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        /* 相关信息区 */
+        .related-section {
+            margin-top: 2.4rem;
+            padding: 1.4rem 0 0.5rem 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .related-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-list li {
+            padding: 0.3rem 0;
+            display: flex;
+            gap: 0.6rem;
+            align-items: baseline;
+            font-size: 0.95rem;
+        }
+
+        .related-list li::before {
+            content: "·";
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .separator {
+            margin: 1.2rem 0;
+            border: 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 500px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .dir-item {
+                flex-wrap: wrap;
+                padding: 0.9rem 1.2rem;
+            }
+
+            .dir-desc {
+                margin-left: 0;
+                width: 100%;
+                padding-left: 2.35rem;
+                font-size: 0.88rem;
+            }
+        }
+
+        /* 窄正文宽度内保持舒适 */
+        .faq-short {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            margin: 2rem 0 1rem 0;
+            border: 1px solid #eef2f6;
+        }
+
+        .faq-short p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .faq-short strong {
+            color: #0f172a;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- hero 区：说明定位 -->
+    <div class="hero">
+        <h1>九游 · 知识库</h1>
+        <p style="margin-top: 0.6rem;">
+            这个页面是围绕 <a href="https://by-9game.com">九游</a> 建立的一份轻量知识入口。<br>
+            归档了常见分类、使用背景与相关提示，方便快速了解站点结构。
+        </p>
+        <span class="meta-tag">稳定入口 · 目录式说明</span>
+    </div>
+
+    <!-- 说明区：为什么需要这样的入口 -->
+    <section>
+        <h2>从稳定入口说起</h2>
+        <p>
+            一个长期维护的地址，可以降低信息分散带来的认知负担。对于经常需要参考同一来源的人来说，一个清晰、变化可预期的页面比碎片化收藏更可靠。<a href="https://by-9game.com">九游</a> 本身承载了比较完整的资源与索引，而这篇介绍试图用更结构化的方式，把常见的内容区域标记出来。
+        </p>
+        <p>
+            以下分类并非站点地图，而是基于日常使用中容易出现需求的方向，整理成条目。每个条目对应一类常见信息，可以视为知识库的快速目录。
+        </p>
+    </section>
+
+    <!-- 目录感布局：卡片式条目 -->
+    <section>
+        <h2>内容目录</h2>
+        <div class="directory-grid">
+            <div class="dir-item">
+                <span class="dir-index">01</span>
+                <span class="dir-label">站点定位与背景</span>
+                <span class="dir-desc">主要方向及适用场景</span>
+            </div>
+            <div class="dir-item">
+                <span class="dir-index">02</span>
+                <span class="dir-label">常用资源索引</span>
+                <span class="dir-desc">工具、文档、导航</span>
+            </div>
+            <div class="dir-item">
+                <span class="dir-index">03</span>
+                <span class="dir-label">更新与维护记录</span>
+                <span class="dir-desc">版本变化 & 时间线</span>
+            </div>
+            <div class="dir-item">
+                <span class="dir-index">04</span>
+                <span class="dir-label">社区/交流入口</span>
+                <span class="dir-desc">讨论与反馈渠道</span>
+            </div>
+            <div class="dir-item">
+                <span class="dir-index">05</span>
+                <span class="dir-label">常见术语对照</span>
+                <span class="dir-desc">名称解释 & 快速参考</span>
+            </div>
+        </div>
+        <p style="font-size:0.95rem; color:#64748b;">
+            每个条目都在主站 <a href="https://by-9game.com">九游</a> 内有对应专区，可直接通过站内导航到达。
+        </p>
+    </section>
+
+    <!-- 提示区：使用建议与注意事项 -->
+    <section>
+        <h2>使用提示</h2>
+        <div class="info-box">
+            <p><span class="label">📌 建议先浏览目录</span><br>
+            从上方目录中选择最接近你需求的分类，再到主站对应板块查看细节。这样比直接搜索更省时间。</p>
+            <p><span class="label">🔗 链接稳定性</span><br>
+            本页指向的 <a href="https://by-9game.com">九游</a> 为长期维护地址，如果需要引用或收藏，推荐直接使用根域名。</p>
+            <p><span class="label">🧩 内容迭代</span><br>
+            该站的内容结构可能随时间调整，本知识库入口也会保持同步更新。</p>
+        </div>
+    </section>
+
+    <!-- FAQ 摘要区（非完整问答，但保留知识型语气） -->
+    <section>
+        <h2>常见问题摘要</h2>
+        <div class="faq-short">
+            <p><strong>这个页面和主站是什么关系？</strong><br>
+            它是独立的介绍页，同时作为通往 <a href="https://by-9game.com">九游</a> 的稳定入口之一，不代替主站本身。</p>
+            <p><strong>目录里的分类会变化吗？</strong><br>
+            会。随着站点内容更新，分类条目会做增删或重命名，保持与实际信息对应。</p>
+            <p><strong>是否包含所有功能？</strong><br>
+            不包含。只列出比较常用或新用户容易关注的区域，更完整的内容请直接访问主站。</p>
+        </div>
+    </section>
+
+    <!-- 相关信息区 -->
+    <section class="related-section">
+        <h2 style="border-bottom: none; margin-top: 0;">相关信息</h2>
+        <ul class="related-list">
+            <li>主站根目录：<a href="https://by-9game.com">九游</a> (推荐直接访问)</li>
+            <li>本页版本：v1.0 (2025-03)</li>
+            <li>内容许可：仅供参考，不构成任何形式的保证</li>
+            <li>反馈建议：通过主站提供的联系方式</li>
+        </ul>
+        <hr class="separator">
+        <p style="font-size: 0.9rem; color: #64748b;">
+            这份知识库入口旨在降低信息获取门槛，所有描述均基于实际使用体验梳理。
+        </p>
+    </section>
+
+    <!-- 一行极简 footer 感 -->
+    <div style="margin-top: 3rem; padding-top: 1rem; text-align: left; font-size: 0.8rem; color: #94a3b8; border-top: 1px solid #eef2f6;">
+        <span>由知识库入口页面 · 稳定版</span>
+    </div>
+</div>
+</body>
+</html>
